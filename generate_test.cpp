@@ -23,11 +23,10 @@ int main() {
 
     out.close();
 
-    // std::cout << "TestingData.txt generated successfully.\n";
     std::cout << "Reference strings: " << NUM_REF_STR << '\n';
     std::cout << "String length: " << REF_STR_LEN << '\n';
     std::cout << "Number of pages: " << NUM_PAGES << '\n';
-    std::cout << "Configured frame size: " << FRAME_SIZE << '\n';
+    std::cout << "Frame size: " << FRAME_SIZE << '\n';
 
     return 0;
 }
