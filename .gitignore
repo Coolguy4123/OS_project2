@@ -3,6 +3,6 @@ TestingData.txt
 
 .DS_Store
 
-/FCFS
+/FIFO
 /LRU
 /Optimal
