@@ -9,7 +9,7 @@ int LRU(const string& ref_str, int frameCnt) {
     list<int> lruList;
     int pageFaults = 0;
 
-    for (int i = 0; i < ref_str.size()l i++) {
+    for (int i = 0; i < ref_str.size(); i++) {
         int page = ref_str[i] - '0';
         bool fault = false;
 
@@ -51,8 +51,8 @@ int LRU(const string& ref_str, int frameCnt) {
 }
 
 int main() {
-    const int FRAME_COUNT = 3;
-    const string referenceString = "331153501525755717511054404712";
+    const int FRAME_COUNT = 4;
+    const string referenceString = "447203267111702621412164452251";
 
     int totalFaults = LRU(referenceString, FRAME_COUNT);
 

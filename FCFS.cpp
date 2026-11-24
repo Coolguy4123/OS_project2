@@ -31,7 +31,7 @@ int FIFO(const string& ref_str, int frameCnt) {
         cout << "Index: " << i << " | ";
         cout << "Page: " << page << " | Frames: [";
 
-        for (size_t j = 0; j < frames.size(); ++j) {
+        for (int j = 0; j < frames.size(); ++j) {
             cout << frames[j];
 
             if (j + 1 < frames.size()) {

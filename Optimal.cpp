@@ -76,8 +76,8 @@ int Optimal(const string& ref_str, int frameCnt) {
 }
 
 int main() {
-    const int FRAME_COUNT = 3;
-    const string referenceString = "331153501525755717511054404712";
+    const int FRAME_COUNT = 5;
+    const string referenceString = "247412413522272022465614565356";
 
     int totalFaults = Optimal(referenceString, FRAME_COUNT);
 
