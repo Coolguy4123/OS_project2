@@ -2,3 +2,7 @@ generate_test
 TestingData.txt
 
 .DS_Store
+
+/FCFS
+/LRU
+/Optimal
