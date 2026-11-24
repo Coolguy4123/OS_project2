@@ -2,6 +2,7 @@
 #include <iostream>
 #include <list>
 #include <string>
+#include <fstream>
 
 using namespace std;
 
@@ -13,7 +14,7 @@ int LRU(const string& ref_str, int frameCnt) {
         int page = ref_str[i] - '0';
         bool fault = false;
 
-        if (find(lruList.begin(), lruList.end(), page) != lruList.end()) {
+        if (find(lruList.begin(), lruList.end(), page) != lruList.end()) { // Found the page, no page fault
             fault = false;
 
             lruList.remove(page);
@@ -28,36 +29,30 @@ int LRU(const string& ref_str, int frameCnt) {
 
             lruList.push_back(page);
         }
-        
-        cout << "Index: " << i << " | ";
-        cout << "Page: " << page << " | Frames: [";
-
-        int pos = 0;
-        for (int framePage : lruList) {
-            cout << framePage;
-
-            if (pos + 1 < lruList.size()) {
-                cout << ", ";
-            }
-
-            pos++;
-        }
-
-        cout << "] | ";
-        cout << (fault ? "Page Fault" : "No Page Fault") << '\n';
     }
 
     return pageFaults;
 }
 
 int main() {
-    const int FRAME_COUNT = 4;
-    const string referenceString = "447203267111702621412164452251";
+    const int FRAME_COUNT = 6;
 
-    int totalFaults = LRU(referenceString, FRAME_COUNT);
+    ifstream in("TestingData.txt");
+    string ref;
 
-    cout << "\nTotal page faults for LRU with a frame count of "<< FRAME_COUNT;
-    cout << ": " << totalFaults << '\n';
+    int total = 0;
+    int cnt = 0;
+
+    while (in >> ref) {
+        int pf = LRU(ref, FRAME_COUNT);
+        total += pf;
+        cnt++;
+    }
+
+    cout << "\nAverage page faults for LRU with a frame count of "
+         << FRAME_COUNT << ": "
+         << static_cast<double>(total) / cnt << '\n';
+
 
     return 0;
 }

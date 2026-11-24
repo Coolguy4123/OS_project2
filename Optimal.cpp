@@ -3,6 +3,7 @@
 #include <limits>
 #include <string>
 #include <vector>
+#include <fstream>
 
 using namespace std;
 
@@ -14,7 +15,7 @@ int Optimal(const string& ref_str, int frameCnt) {
         int page = ref_str[i] - '0';
         bool fault = false;
 
-        if (find(frames.begin(), frames.end(), page) != frames.end()) {
+        if (find(frames.begin(), frames.end(), page) != frames.end()) { // Found the page, no page fault
             fault = false;
         } else {
             fault = true;
@@ -51,37 +52,29 @@ int Optimal(const string& ref_str, int frameCnt) {
                 frames[replaceIndex] = page;
             }
         }
-
-        cout << "Index: " << i << " | ";
-        cout << "Page: " << page << " | Frames: [";
-
-        for (int j = 0; j < frames.size(); ++j) {
-            cout << frames[j];
-
-            if (j + 1 < frames.size()) {
-                cout << ", ";
-            }
-        }
-
-        cout << "] | ";
-        if (fault){
-            cout << "Page Fault";
-        } else {
-            cout << "No Page Fault";
-        }
-        cout << '\n';
     }
 
     return pageFaults;
 }
 
 int main() {
-    const int FRAME_COUNT = 5;
-    const string referenceString = "247412413522272022465614565356";
+    const int FRAME_COUNT = 6;
 
-    int totalFaults = Optimal(referenceString, FRAME_COUNT);
+    ifstream in("TestingData.txt");
+    string ref;
 
-    cout << "\nTotal Optimal page faults: " << totalFaults << '\n';
+    int total = 0;
+    int cnt = 0;
+
+    while (in >> ref) {
+        int pf = Optimal(ref, FRAME_COUNT);
+        total += pf;
+        cnt++;
+    }
+
+    cout << "\nAverage page faults for Optimal with a frame count of "
+         << FRAME_COUNT << ": "
+         << static_cast<double>(total) / cnt << '\n';
 
     return 0;
 }
